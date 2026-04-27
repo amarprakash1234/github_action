@@ -1,0 +1,25 @@
+name: Portfolio
+on: 
+  workflow_dispatch:
+permissions: 
+  pages: write
+  id-token: write
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Github Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload Static Files
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: "."
+
+      - name: Deploy to Github Pages
+        uses: actions/deploy-pages@v4
