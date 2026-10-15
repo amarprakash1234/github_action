@@ -1,201 +1,857 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Amar Prakash | Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+  <meta name="description" content="Amar Prakash — Software Developer and DevOps Engineer portfolio.">
+  <title>Amar Prakash | Software Developer</title>
+
   <style>
+    :root {
+      --bg: #0b1020;
+      --panel: #121b31;
+      --text: #f3f6ff;
+      --muted: #aab5cf;
+      --line: rgba(170, 190, 230, 0.16);
+      --accent: #7c9cff;
+      --accent-2: #5eead4;
+    }
+
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      background: #0f172a;
-      color: #fff;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      background:
+        radial-gradient(ellipse at 15% 0%, rgba(83,110,255,.18), transparent 34rem),
+        radial-gradient(ellipse at 90% 18%, rgba(46,213,190,.10), transparent 28rem),
+        var(--bg);
+      color: var(--text);
       line-height: 1.6;
     }
 
-    header {
-      background: #020617;
-      padding: 20px 50px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      color: #38bdf8;
-    }
-
-    nav a {
-      color: #fff;
-      margin-left: 20px;
+    a {
+      color: inherit;
       text-decoration: none;
-      transition: 0.3s;
     }
 
-    nav a:hover {
-      color: #38bdf8;
+    a:focus-visible,
+    button:focus-visible {
+      outline: 3px solid var(--accent-2);
+      outline-offset: 4px;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(11, 16, 32, 0.85);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(18px);
+    }
+
+    nav {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: -0.04em;
+    }
+
+    .brand span {
+      color: var(--accent-2);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .menu-toggle {
+      display: none;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px;
+      cursor: pointer;
     }
 
     .hero {
-      height: 90vh;
-      display: flex;
-      justify-content: center;
+      padding: 92px 0 72px;
+      display: grid;
+      grid-template-columns: 1.4fr 0.8fr;
       align-items: center;
-      text-align: center;
+      gap: 56px;
     }
 
-    .hero h2 {
-      font-size: 3rem;
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 700;
+      font-size: 0.83rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
-    .hero span {
-      color: #38bdf8;
+    h1 {
+      font-size: clamp(2.8rem, 6vw, 5.2rem);
+      letter-spacing: -0.065em;
+      line-height: 1.02;
+      margin: 18px 0 22px;
+    }
+
+    .gradient {
+      background: linear-gradient(100deg, #8ca7ff, #5eead4);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
     }
 
     .hero p {
-      margin-top: 10px;
-      font-size: 1.2rem;
-      color: #cbd5f5;
+      color: var(--muted);
+      font-size: 1.1rem;
+      max-width: 650px;
+      margin-bottom: 28px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .btn {
-      margin-top: 20px;
-      display: inline-block;
-      padding: 10px 20px;
-      background: #38bdf8;
-      color: #000;
-      text-decoration: none;
-      border-radius: 5px;
-      font-weight: bold;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      transition: transform 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent);
+    }
+
+    .btn-primary {
+      background: linear-gradient(120deg, #7997ff, #5eead4);
+      color: #091122;
+      border: 0;
+    }
+
+    .profile-card {
+      background:
+        linear-gradient(145deg, rgba(124,156,255,.16), rgba(94,234,212,.06)),
+        var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      padding: 28px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.25);
+    }
+
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 24px;
+      display: grid;
+      place-items: center;
+      font-size: 2rem;
+      font-weight: 850;
+      color: #091122;
+      background: linear-gradient(135deg, #8ca7ff, #5eead4);
+      margin-bottom: 22px;
+    }
+
+    .profile-card h2 {
+      margin-bottom: 4px;
+      font-size: 1.4rem;
+    }
+
+    .role {
+      color: var(--muted);
+      margin-bottom: 22px;
+    }
+
+    .status {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      font-size: 0.9rem;
+      color: #c6d1e8;
+    }
+
+    .status-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 14px rgba(94,234,212,.6);
     }
 
     section {
-      padding: 60px 50px;
+      padding: 48px 0;
+    }
+
+    .section-heading {
+      margin-bottom: 26px;
+    }
+
+    .section-heading .eyebrow {
+      font-size: 0.75rem;
     }
 
     .section-title {
-      font-size: 2rem;
-      margin-bottom: 20px;
-      color: #38bdf8;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      letter-spacing: -0.045em;
+      line-height: 1.15;
+      margin: 8px 0 10px;
     }
 
-    .about p {
-      max-width: 700px;
-      color: #cbd5f5;
+    .section-intro {
+      color: var(--muted);
+      max-width: 680px;
     }
 
-    .skills ul {
-      display: flex;
-      flex-wrap: wrap;
-      list-style: none;
-    }
-
-    .skills li {
-      background: #1e293b;
-      margin: 10px;
-      padding: 10px 15px;
-      border-radius: 5px;
-    }
-
-    .projects {
+    .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
+      gap: 18px;
+    }
+
+    .skills-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .skill-card,
+    .content-card,
+    .project-card,
+    .contact-card {
+      background: rgba(18, 27, 49, 0.85);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .skill-card,
+    .content-card,
+    .project-card {
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .skill-card:hover,
+    .content-card:hover,
+    .project-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(124,156,255,.45);
+    }
+
+    .skill-icon {
+      display: inline-grid;
+      place-items: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(124,156,255,.13);
+      color: var(--accent-2);
+      font-weight: 800;
+      margin-bottom: 13px;
+    }
+
+    .skill-card h3,
+    .content-card h3 {
+      margin-bottom: 6px;
+      font-size: 1rem;
+    }
+
+    .skill-card p,
+    .content-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .two-col {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .content-card ul {
+      padding-left: 19px;
+      margin-top: 13px;
+      color: var(--muted);
+    }
+
+    .content-card li {
+      margin: 7px 0;
     }
 
     .project-card {
-      background: #1e293b;
-      padding: 20px;
-      border-radius: 10px;
-      transition: 0.3s;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      overflow: hidden;
     }
 
-    .project-card:hover {
-      transform: translateY(-5px);
+    .project-preview {
+      border-radius: 16px;
+      min-height: 190px;
+      padding: 22px;
+      background: linear-gradient(
+        135deg,
+        rgba(124,156,255,.2),
+        rgba(94,234,212,.12)
+      );
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .window-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .window-dots i {
+      width: 8px;
+      height: 8px;
+      display: block;
+      border-radius: 50%;
+      background: #8ca7ff;
+    }
+
+    .preview-title {
+      font-size: 1.7rem;
+      font-weight: 850;
+      letter-spacing: -0.05em;
+    }
+
+    .preview-code {
+      color: #b9c8ef;
+      font-family: monospace;
+      font-size: 0.85rem;
+    }
+
+    .project-content h3 {
+      margin-bottom: 8px;
+      font-size: 1.45rem;
+    }
+
+    .project-content p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      color: #dce5ff;
+      border: 1px solid var(--line);
+      background: rgba(124,156,255,.08);
+      padding: 5px 10px;
+      border-radius: 999px;
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .project-links .btn {
+      font-size: 0.88rem;
+      padding: 10px 13px;
+    }
+
+    .contact-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .contact-symbol {
+      display: grid;
+      place-items: center;
+      flex: 0 0 42px;
+      height: 42px;
+      border-radius: 13px;
+      background: rgba(94,234,212,.1);
+      color: var(--accent-2);
+      font-weight: 800;
+    }
+
+    .contact-item small {
+      color: var(--muted);
+      display: block;
+      margin-bottom: 3px;
+    }
+
+    .contact-item a {
+      overflow-wrap: anywhere;
+    }
+
+    .contact-item a:hover {
+      color: var(--accent-2);
     }
 
     footer {
-      text-align: center;
-      padding: 20px;
-      background: #020617;
-      margin-top: 30px;
+      border-top: 1px solid var(--line);
+      margin-top: 56px;
+      padding: 24px 0;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 850px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 32px;
+        padding-top: 65px;
+      }
+
+      .profile-card {
+        max-width: 480px;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 71px;
+        left: 0;
+        right: 0;
+        padding: 18px 22px;
+        background: #10182b;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      .hero {
+        padding: 54px 0 42px;
+      }
+
+      section {
+        padding: 34px 0;
+      }
+
+      .skills-grid,
+      .two-col,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skill-card,
+      .content-card,
+      .contact-card {
+        padding: 19px;
+      }
+
+      h1 {
+        font-size: 3.1rem;
+      }
     }
   </style>
 </head>
 
 <body>
+  <header>
+    <nav class="container" aria-label="Main navigation">
+      <a class="brand" href="#home">Amar<span>.</span></a>
 
-<header>
-  <h1>Amar Prakash</h1>
-  <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        aria-expanded="false"
+        aria-controls="navLinks"
+      >
+        Menu
+      </button>
 
-<section class="hero">
-  <div>
-    <h2>Hello, I'm <span>Amar Prakash</span></h2>
-    <p>Software Engineer | MERN Stack Developer | Problem Solver</p>
-    <a href="#contact" class="btn">Hire Me</a>
-  </div>
-</section>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-<section id="about" class="about">
-  <h2 class="section-title">About Me</h2>
-  <p>
-    I am a passionate Software Engineer with strong knowledge of Java, Data Structures & Algorithms,
-    and modern web technologies. I specialize in building scalable web applications using the MERN stack.
-    I love solving real-world problems and continuously improving my skills.
-  </p>
-</section>
+  <main>
+    <!-- Hero -->
+    <div class="container hero" id="home">
+      <div>
+        <div class="eyebrow">Software Developer · DevOps</div>
 
-<section id="skills" class="skills">
-  <h2 class="section-title">Skills</h2>
-  <ul>
-    <li>Java</li>
-    <li>JavaScript</li>
-    <li>React.js</li>
-    <li>Node.js</li>
-    <li>MongoDB</li>
-    <li>HTML & CSS</li>
-    <li>Redux</li>
-    <li>Git & GitHub</li>
-  </ul>
-</section>
+        <h1>
+          Hi, I'm Amar<br>
+          <span class="gradient">Prakash.</span>
+        </h1>
 
-<section id="projects">
-  <h2 class="section-title">Projects</h2>
-  <div class="projects">
-    <div class="project-card">
-      <h3>LeetCode Clone</h3>
-      <p>A full-stack coding platform built using MERN stack with code editor and problem-solving features.</p>
+        <p>
+          I build full-stack web applications and work with cloud and DevOps
+          tools to deploy and operate them. I enjoy solving problems, learning
+          how systems work, and turning ideas into practical software.
+        </p>
+
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">
+            Explore my work ↗
+          </a>
+          <a class="btn" href="#contact">Get in touch</a>
+        </div>
+      </div>
+
+      <aside class="profile-card">
+        <div class="avatar">AP</div>
+        <h2>Amar Prakash</h2>
+        <p class="role">MERN Stack Developer · DevOps Engineer</p>
+
+        <div class="status">
+          <span class="status-dot"></span>
+          Focused on building and deploying software
+        </div>
+      </aside>
     </div>
 
-    <div class="project-card">
-      <h3>Weather App</h3>
-      <p>A simple weather application using API integration to show real-time weather data.</p>
+    <!-- About -->
+    <section id="about">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">A little about me</div>
+          <h2 class="section-title">I like building things that work.</h2>
+          <p class="section-intro">
+            My interests span frontend experiences, backend APIs, databases,
+            Linux, cloud infrastructure, and deployment automation. I aim to
+            write maintainable code and understand the full journey from
+            development to production.
+          </p>
+        </div>
+
+        <div class="grid two-col">
+          <article class="content-card">
+            <h3>Full-stack development</h3>
+            <p>
+              Building responsive user interfaces and connecting them to
+              backend services.
+            </p>
+            <ul>
+              <li>React-based frontend development</li>
+              <li>REST APIs with Node.js and Express</li>
+              <li>MongoDB data modelling and integration</li>
+            </ul>
+          </article>
+
+          <article class="content-card">
+            <h3>Cloud & DevOps</h3>
+            <p>
+              Learning and applying tools that help applications deploy
+              reliably and run in production.
+            </p>
+            <ul>
+              <li>Linux, NGINX, and AWS</li>
+              <li>Docker and Kubernetes fundamentals</li>
+              <li>CI/CD with GitHub Actions</li>
+              <li>Infrastructure as code with Terraform</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">My toolkit</div>
+          <h2 class="section-title">Skills & technologies</h2>
+          <p class="section-intro">
+            Technologies I use or am actively developing experience with
+            across software development and DevOps.
+          </p>
+        </div>
+
+        <div class="grid skills-grid">
+          <article class="skill-card">
+            <div class="skill-icon">R</div>
+            <h3>React</h3>
+            <p>Component-based UI development</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">N</div>
+            <h3>Node.js</h3>
+            <p>Server-side JavaScript development</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">Ex</div>
+            <h3>Express.js</h3>
+            <p>Backend APIs and routing</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">DB</div>
+            <h3>MongoDB</h3>
+            <p>NoSQL database and data modelling</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">Py</div>
+            <h3>Python</h3>
+            <p>Scripting and programming</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">D</div>
+            <h3>Docker</h3>
+            <p>Containerisation</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">K8s</div>
+            <h3>Kubernetes</h3>
+            <p>Container orchestration</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">CI</div>
+            <h3>GitHub Actions</h3>
+            <p>CI/CD automation</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">AWS</div>
+            <h3>AWS</h3>
+            <p>Cloud hosting and services</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">N</div>
+            <h3>NGINX</h3>
+            <p>Web server and reverse proxy</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">⌘</div>
+            <h3>Linux</h3>
+            <p>Command line and system basics</p>
+          </article>
+
+          <article class="skill-card">
+            <div class="skill-icon">Tf</div>
+            <h3>Terraform</h3>
+            <p>Infrastructure as code</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Selected work</div>
+          <h2 class="section-title">Featured project</h2>
+          <p class="section-intro">
+            A full-stack coding practice platform built with the MERN stack
+            and deployed on AWS.
+          </p>
+        </div>
+
+        <article class="project-card">
+          <div class="project-preview">
+            <div class="window-dots" aria-hidden="true">
+              <i></i><i></i><i></i>
+            </div>
+
+            <div>
+              <div class="preview-title">LeetCode Clone</div>
+              <div class="preview-code">
+                solve(problem) → submit() → evaluate()
+              </div>
+            </div>
+          </div>
+
+          <div class="project-content">
+            <h3>LeetCode Clone</h3>
+
+            <p>
+              A full-stack coding practice application inspired by online
+              coding platforms. Built with the MERN stack and deployed on AWS.
+              Explore the live project or review the frontend and backend
+              source code on GitHub.
+            </p>
+
+            <div class="tags">
+              <span class="tag">MongoDB</span>
+              <span class="tag">Express.js</span>
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">AWS</span>
+            </div>
+
+            <div class="project-links">
+              <a
+                class="btn btn-primary"
+                href="http://16.171.24.209"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Live demo ↗
+              </a>
+
+              <a
+                class="btn"
+                href="https://github.com/amarprakash1234/leetcode-frontend"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Frontend code ↗
+              </a>
+
+              <a
+                class="btn"
+                href="https://github.com/amarprakash1234/leetcode-backend"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Backend code ↗
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div class="eyebrow">Let's connect</div>
+          <h2 class="section-title">Have a role or project in mind?</h2>
+          <p class="section-intro">
+            Feel free to contact me about software development opportunities,
+            collaboration, or projects.
+          </p>
+        </div>
+
+        <div class="grid contact-grid">
+          <div class="contact-card">
+            <div class="contact-item">
+              <div class="contact-symbol">✉</div>
+              <div>
+                <small>Email</small>
+                <a href="mailto:prakashamar730@gmail.com">
+                  prakashamar730@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card">
+            <div class="contact-item">
+              <div class="contact-symbol">☎</div>
+              <div>
+                <small>Phone</small>
+                <a href="tel:+916206408058">+91 6206408058</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Amar Prakash</span>
+      <span>Designed with care · Built with HTML, CSS & JavaScript</span>
     </div>
-  </div>
-</section>
+  </footer>
 
-<section id="contact">
-  <h2 class="section-title">Contact Me</h2>
-  <p>Email: amarprakash@example.com</p>
-  <p>Phone: +91 9876543210</p>
-</section>
+  <script>
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
 
-<footer>
-  <p>© 2026 Amar Prakash | All Rights Reserved</p>
-</footer>
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+    });
 
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
 </body>
 </html>
+
